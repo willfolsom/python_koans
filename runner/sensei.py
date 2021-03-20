@@ -95,7 +95,10 @@ class Sensei(MockableTestResult):
         self.stream.writeln("")
         self.stream.writeln(self.say_something_zenlike())
 
-        if self.failures: sys.exit(-1)
+        if self.failures:
+            self.stream.writeln("Failed")
+            sys.exit()
+        else: sys.stdout.write("test")
         self.stream.writeln(
             "\n{0}**************************************************" \
             .format(Fore.RESET))
@@ -104,6 +107,8 @@ class Sensei(MockableTestResult):
         self.stream.writeln(
             "\nIf you want more, take a look at about_extra_credit.py{0}{1}" \
             .format(Fore.RESET, Style.NORMAL))
+
+        self.stream.writeln("Passed")
 
     def errorReport(self):
         problem = self.firstFailure()
