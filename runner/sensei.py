@@ -6,6 +6,7 @@ import re
 import sys
 import os
 import glob
+import random
 
 from . import helper
 from .mockable_test_result import MockableTestResult
@@ -23,6 +24,11 @@ class Sensei(MockableTestResult):
         self.pass_count = 0
         self.lesson_pass_count  = 0
         self.all_lessons = None
+        self.lessons_passed = []
+        self.emoji = ['🤔', '😎', '🚀', '✨']
+
+    def getEmoji(self):
+        return random.choice(self.emoji)
 
     def startTest(self, test):
         MockableTestResult.startTest(self, test)
@@ -30,19 +36,17 @@ class Sensei(MockableTestResult):
         if helper.cls_name(test) != self.prevTestClassName:
             self.prevTestClassName = helper.cls_name(test)
             if not self.failures:
-                self.stream.writeln()
-                self.stream.writeln("{0}{1}Thinking {2}".format(
-                    Fore.RESET, Style.NORMAL, helper.cls_name(test)))
-                if helper.cls_name(test) not in ['AboutAsserts', 'AboutExtraCredit']:
+                if self.prevTestClassName not in ['AboutAsserts', 'AboutExtraCredit']:
                     self.lesson_pass_count += 1
+                    self.lessons_passed.append(self.prevTestClassName)
+            if self.prevTestClassName in self.lessons_passed:
+                emoji = self.getEmoji()
+                self.stream.writeln("  {0}{1}Thinking {2} {3}".format(
+                Fore.GREEN, Style.BRIGHT, self.prevTestClassName, emoji))
 
     def addSuccess(self, test):
         if self.passesCount():
             MockableTestResult.addSuccess(self, test)
-            self.stream.writeln( \
-                "  {0}{1}{2} has expanded your awareness.{3}{4}" \
-                .format(Fore.GREEN, Style.BRIGHT, test._testMethodName, \
-                Fore.RESET, Style.NORMAL))
             self.pass_count += 1
 
     def addError(self, test, err):
