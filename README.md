@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/willfolsom/python_koans/actions/workflows/main.yml/badge.svg)
 
-Custom fork of Python Koans. Added emoji and some random command line stuff. If a batch of tests pass, it'll show up in green with a random emoji. The last failing test will show in red.
+Custom fork of Python Koans. Added emoji and some random command line stuff. If a batch of tests pass, it'll show up in green with a random emoji. If one is started, it'll show the first failing test in red.
 
 Example output:
 
