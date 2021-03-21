@@ -33,8 +33,32 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    m = {}
+    score = 0
+
+    for d in dice:
+        if d in m:
+            m[d] += 1
+        else:
+            m[d] = 1
+
+    # first iteration handles special cases
+    for n in m:
+        if n == 1 and m[n] >= 3:
+            score += 1000
+            m[n] -= 3
+        elif m[n] >= 3:
+            score += n * 100
+            m[n] -= 3
+
+    # second iteration just adds to score
+    for n in m:
+        if n == 1:
+            score += m[n] * 100
+        if n == 5:
+            score += m[n] * 50
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
@@ -70,3 +94,6 @@ class AboutScoringProject(Koan):
     def test_ones_not_left_out(self):
         self.assertEqual(300, score([1,2,2,2]))
         self.assertEqual(350, score([1,5,2,2,2]))
+
+    def test_score_of_five_1s_is_1200(self):
+        self.assertEqual(1200, score([1,1,1,1,1]))
