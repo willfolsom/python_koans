@@ -32,6 +32,8 @@ from runner.koan import *
 #
 # Your goal is to write the score method.
 
+# Will note: dict here is cool.
+
 def score(dice):
     m = {}
     score = 0
