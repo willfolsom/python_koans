@@ -34,7 +34,4 @@ koans.about_packages.AboutPackages
 koans.about_class_attributes.AboutClassAttributes
 koans.about_attribute_access.AboutAttributeAccess
 koans.about_deleting_objects.AboutDeletingObjects
-koans.about_proxy_object_project.AboutProxyObjectProject
-koans.about_proxy_object_project.TelevisionTest
 koans.about_extra_credit.AboutExtraCredit
-koans.about_regex.AboutRegex

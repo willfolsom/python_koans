@@ -98,7 +98,6 @@ class Sensei(MockableTestResult):
         if self.failures:
             self.stream.writeln("Failed (to pass all koans)")
             sys.exit()
-        else: sys.stdout.write("test")
         self.stream.writeln(
             "\n{0}**************************************************" \
             .format(Fore.RESET))
