@@ -14,6 +14,8 @@ The last line of the output shows the overall status without the fluff. To see j
 
 ![Small Output](smallOut.png)
 
+THIS NOW SAYS: "Failed (to pass all koans)" and "Passed (all koans)"
+
 The action uses this command.
 
 For anything else, see the original repo.
