@@ -96,7 +96,7 @@ class Sensei(MockableTestResult):
         self.stream.writeln(self.say_something_zenlike())
 
         if self.failures:
-            self.stream.writeln("Failed")
+            self.stream.writeln("Failed (to pass all koans)")
             sys.exit()
         else: sys.stdout.write("test")
         self.stream.writeln(
@@ -108,7 +108,7 @@ class Sensei(MockableTestResult):
             "\nIf you want more, take a look at about_extra_credit.py{0}{1}" \
             .format(Fore.RESET, Style.NORMAL))
 
-        self.stream.writeln("Passed")
+        self.stream.writeln("Passed (all koans)")
 
     def errorReport(self):
         problem = self.firstFailure()
